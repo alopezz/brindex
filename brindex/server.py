@@ -1,9 +1,9 @@
 import asyncio
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-from loser._asyncutils import run_async, wrap_sync_reader, wrap_sync_writer
-from loser._html import make_html_list_page
-from loser.repo import LocalRepo, S3Repo
+from brindex._asyncutils import run_async, wrap_sync_reader, wrap_sync_writer
+from brindex._html import make_html_list_page
+from brindex.repo import LocalRepo, S3Repo
 
 
 async def _async_copy_stream(input_stream, output_stream):
@@ -42,7 +42,7 @@ def copy_stream(input_stream, output_stream):
 
 
 def _make_handler(callback):
-    class LoserHandler(BaseHTTPRequestHandler):
+    class BrindexHandler(BaseHTTPRequestHandler):
         def do_GET(self):
             try:
                 response = callback(self.path)
@@ -60,7 +60,7 @@ def _make_handler(callback):
             self.end_headers()
             response.write(self.wfile)
 
-    return LoserHandler
+    return BrindexHandler
 
 
 class _HTMLResponse:
@@ -97,7 +97,7 @@ class _WhlResponse:
                 )
 
 
-class LoserServer:
+class BrindexServer:
     def __init__(self, repo):
         self.repo = repo
 
@@ -161,7 +161,7 @@ def main():
     elif args.local:
         repo = LocalRepo(args.local)
 
-    server = LoserServer(repo)
+    server = BrindexServer(repo)
 
     # Setup a signal to avoid SIGINT showing an ugly traceback
     def _sigint_handler(signum, stack_frame):

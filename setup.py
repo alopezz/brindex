@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 VERSION = '0.0.1'
 
 setup(
-    name='loser',
+    name='brindex',
     version=VERSION,
     description='Local simple repository server as a bridge to custom sources',
     author='Alex Lopez',
@@ -23,7 +23,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'loser = loser.server:main'
+            'brindex = brindex.server:main'
         ],
     },
 )

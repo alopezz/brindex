@@ -1,4 +1,4 @@
-# Loser - local pip-compatible server as a bridge to custom sources
+# brindex - local pip-compatible index server as a bridge to custom sources
 
 The initial motivation for this package came from the need to have a private Python
 package index without needing to host a server, while being compatible with `pip` (via
@@ -20,8 +20,8 @@ actual packages. Note that even though the web server could be deployed anywhere
 theory, it's really only intended to be run locally as that's what the original use case
 requires.
 
-To launch the server, run `loser` with the appropriate command line arguments (see
-`loser --help`). With the server running, it's possible to use `pip` and related tools
+To launch the server, run `brindex` with the appropriate command line arguments (see
+`brindex --help`). With the server running, it's possible to use `pip` and related tools
 by including the local index's URL (`http://localhost:8000`). Typically, that would mean
 adding `--extra-index-url http://localhost:8000` to the `pip` invocation or to a
 `requirements.txt` file.
